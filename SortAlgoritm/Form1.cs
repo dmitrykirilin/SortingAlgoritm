@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,7 +15,6 @@ namespace SortAlgoritm
     public partial class Form1 : Form
     {
         List<SortedItem> items = new List<SortedItem>();
-        AlgorithmBase<int> listForSort = new InsertSort<int>();
 
         public Form1()
         {
@@ -25,14 +25,11 @@ namespace SortAlgoritm
         {
             if (int.TryParse(AddTextBox.Text, out int value))
             {
-                var item = new SortedItem(value);
-                item.ProgressBar.Location = new System.Drawing.Point(items.Count * 25 + 2, 3);
-                item.Label.Location = new System.Drawing.Point(items.Count * 25 + 2, 113);
+                var item = new SortedItem(value, items.Count);
+                
                 items.Add(item);
                 this.panel3.Controls.Add(item.ProgressBar);
                 this.panel3.Controls.Add(item.Label);
-
-                listForSort.Items.Add(value);
             }
             AddTextBox.Clear();
         }
@@ -44,14 +41,10 @@ namespace SortAlgoritm
                 var rnd = new Random();
                 for (int i = 0; i < value; i++)
                 {
-                    var item = new SortedItem(rnd.Next(0, 100));
-                    item.ProgressBar.Location = new System.Drawing.Point(i * 25 + 2, 3);
-                    item.Label.Location = new System.Drawing.Point(i * 25 + 2, 113);
+                    var item = new SortedItem(rnd.Next(0, 100), items.Count);
                     items.Add(item);
                     this.panel3.Controls.Add(item.ProgressBar);
                     this.panel3.Controls.Add(item.Label);
-
-                    listForSort.Items.Add(item.Value);
                 }
             }
             AddTextBox.Clear();
@@ -59,17 +52,37 @@ namespace SortAlgoritm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (listForSort.Items.Count > 1)
+            var listForSort = new BubbleSort<SortedItem>(items);
+            listForSort.CompareEvent += ListForSort_CompareEvent;
+            listForSort.Sort();
+            DisplayList(listForSort.Items);
+        }
+
+        private void ListForSort_CompareEvent(object sender, Tuple<SortedItem, SortedItem> e)
+        {
+            e.Item1.SetColor(Color.Red);
+            e.Item2.SetColor(Color.Green);
+            //Thread.Sleep(1000);
+        }
+
+        public void Swop(AlgorithmBase<int> listForSort, int indA, int indB)
+        {
+
+            var temp = listForSort.Items[indA];
+
+            listForSort.Items[indA] = listForSort.Items[indB];
+
+            listForSort.Items[indB] = temp;
+        }
+
+        public void DisplayList(List<SortedItem> list)
+        {
+            
+            for(int i = 0; i < list.Count; i++)
             {
-                listForSort.Sort();
-                for (int i = 0; i < listForSort.Items.Count; i++)
-                {
-                    var item = new SortedItem(listForSort.Items[i]);
-                    item.ProgressBar.Location = new System.Drawing.Point(i * 25 + 2, 3);
-                    item.Label.Location = new System.Drawing.Point(i * 25 + 2, 113);
-                    this.panel4.Controls.Add(item.ProgressBar);
-                    this.panel4.Controls.Add(item.Label);
-                }
+                var item = new SortedItem(list[i].Value, i);
+                this.panel4.Controls.Add(item.ProgressBar);
+                this.panel4.Controls.Add(item.Label);
             }
         }
     }

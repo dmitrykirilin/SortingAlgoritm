@@ -10,10 +10,19 @@ namespace Algorithms
     public class AlgorithmBase<T> where T: IComparable
     {
         public int SwopCount { get; protected set; } = 0;
+
         public int ComparisonCount { get; protected set; } = 0;
 
-
         public List<T> Items { get; set; } = new List<T>();
+
+        public event EventHandler<Tuple<T, T>> CompareEvent;
+
+        public AlgorithmBase() { }
+
+        public AlgorithmBase(IEnumerable<T> items)
+        {
+            Items.AddRange(items);
+        }
 
         protected void Swop(int positionA, int positiomB)
         {
@@ -42,5 +51,11 @@ namespace Algorithms
             Items.Sort();
         }
         
+        protected int Compare(T a, T b)
+        {
+            CompareEvent?.Invoke(this, new Tuple<T, T>(a, b));
+            ComparisonCount++;
+            return a.CompareTo(b);
+        }
     }
 }
