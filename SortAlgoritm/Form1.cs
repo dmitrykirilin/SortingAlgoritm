@@ -52,7 +52,7 @@ namespace SortAlgoritm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var listForSort = new BubbleSort<SortedItem>(items);
+            var listForSort = new ShellSort<SortedItem>(items);
             listForSort.CompareEvent += ListForSort_CompareEvent;
             listForSort.SwopEvent += ListForSort_SwopEvent;
             listForSort.Sort();
@@ -67,7 +67,7 @@ namespace SortAlgoritm
 
             Refresh();
             
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             e.Item1.SetColor(Color.Blue);
             e.Item2.SetColor(Color.Blue);
         }
@@ -77,7 +77,7 @@ namespace SortAlgoritm
             e.Item1.SetColor(Color.Red);
             e.Item2.SetColor(Color.Green);
             Refresh();
-            Thread.Sleep(500);
+            //Thread.Sleep(1000);
             e.Item1.SetColor(Color.Blue);
             e.Item2.SetColor(Color.Blue);
         }

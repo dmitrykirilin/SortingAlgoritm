@@ -31,9 +31,9 @@ namespace Algorithms
             {
                 SwopEvent?.Invoke(this, new Tuple<T, T>(Items[positionA], Items[positionB]));
 
-               // var temp = Items[positionA];
-               // Items[positionA] = Items[positionB];
-               // Items[positionB] = temp;
+               var temp = Items[positionA];
+              Items[positionA] = Items[positionB];
+              Items[positionB] = temp;
                 SwopCount++;
             }
         }
