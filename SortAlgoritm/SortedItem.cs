@@ -61,5 +61,12 @@ namespace SortAlgoritm
         {
             this.ProgressBar.Color = color;
         }
+
+        public void SetValue(int value)
+        {
+            this.Value = value;
+            this.ProgressBar.Value = value;
+            this.Label.Text = value.ToString();
+        }
     }
 }

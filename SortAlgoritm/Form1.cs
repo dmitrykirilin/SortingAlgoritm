@@ -54,15 +54,32 @@ namespace SortAlgoritm
         {
             var listForSort = new BubbleSort<SortedItem>(items);
             listForSort.CompareEvent += ListForSort_CompareEvent;
+            listForSort.SwopEvent += ListForSort_SwopEvent;
             listForSort.Sort();
             DisplayList(listForSort.Items);
+        }
+
+        private void ListForSort_SwopEvent(object sender, Tuple<SortedItem, SortedItem> e)
+        {
+            var temp = e.Item1.Value;
+            e.Item1.SetValue(e.Item2.Value);
+            e.Item2.SetValue(temp);
+
+            Refresh();
+            
+            Thread.Sleep(500);
+            e.Item1.SetColor(Color.Blue);
+            e.Item2.SetColor(Color.Blue);
         }
 
         private void ListForSort_CompareEvent(object sender, Tuple<SortedItem, SortedItem> e)
         {
             e.Item1.SetColor(Color.Red);
             e.Item2.SetColor(Color.Green);
-            //Thread.Sleep(1000);
+            Refresh();
+            Thread.Sleep(500);
+            e.Item1.SetColor(Color.Blue);
+            e.Item2.SetColor(Color.Blue);
         }
 
         public void Swop(AlgorithmBase<int> listForSort, int indA, int indB)

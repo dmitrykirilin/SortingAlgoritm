@@ -16,6 +16,7 @@ namespace Algorithms
         public List<T> Items { get; set; } = new List<T>();
 
         public event EventHandler<Tuple<T, T>> CompareEvent;
+        public event EventHandler<Tuple<T, T>> SwopEvent;
 
         public AlgorithmBase() { }
 
@@ -24,14 +25,15 @@ namespace Algorithms
             Items.AddRange(items);
         }
 
-        protected void Swop(int positionA, int positiomB)
+        protected void Swop(int positionA, int positionB)
         {
-            if (positionA < Items.Count && positiomB < Items.Count)
+            if (positionA < Items.Count && positionB < Items.Count)
             {
-                var temp = Items[positionA];
-                Items[positionA] = Items[positiomB];
-                Items[positiomB] = temp;
+                SwopEvent?.Invoke(this, new Tuple<T, T>(Items[positionA], Items[positionB]));
 
+               // var temp = Items[positionA];
+               // Items[positionA] = Items[positionB];
+               // Items[positionB] = temp;
                 SwopCount++;
             }
         }
