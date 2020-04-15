@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Algorithms
@@ -29,12 +30,12 @@ namespace Algorithms
         {
             if (positionA < Items.Count && positionB < Items.Count)
             {
-                SwopEvent?.Invoke(this, new Tuple<T, T>(Items[positionA], Items[positionB]));
-
-               var temp = Items[positionA];
-              Items[positionA] = Items[positionB];
-              Items[positionB] = temp;
+                var temp = Items[positionA];
+                Items[positionA] = Items[positionB];
+                Items[positionB] = temp;
                 SwopCount++;
+                
+                SwopEvent?.Invoke(this, new Tuple<T, T>(Items[positionA], Items[positionB]));
             }
         }
 

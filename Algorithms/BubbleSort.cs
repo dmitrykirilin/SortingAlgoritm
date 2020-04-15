@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Algorithms
@@ -26,6 +27,10 @@ namespace Algorithms
                     if(Compare(a, b) == 1)
                     {
                          Swop(i, i + 1);
+                    }
+                    else
+                    {
+                        Thread.Sleep(200);
                     }
                 }
                 

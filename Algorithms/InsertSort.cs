@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Algorithms
 {
     public class InsertSort<T> : AlgorithmBase<T> where T : IComparable
     {
+        public InsertSort(IEnumerable<T> items) : base(items) { }
+        public InsertSort() { }
+
         protected override void MakeSort()
         {
             int insertIndex = 0;
@@ -15,11 +19,11 @@ namespace Algorithms
             for (int i = 0; i < count - 1; i++)
             {
                 insertIndex = i + 1;
-                while (insertIndex != 0 && Items[insertIndex].CompareTo(Items[insertIndex - 1]) == -1)
+                while (insertIndex != 0 && Compare(Items[insertIndex], Items[insertIndex - 1]) == -1)
                 {
                     Swop(insertIndex, insertIndex - 1);
                     insertIndex--;
-                    ComparisonCount++;
+                    SwopCount++;
                 }
             }
         }

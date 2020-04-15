@@ -37,8 +37,14 @@
             this.FillButton = new System.Windows.Forms.Button();
             this.FillTextBox = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BubbleSort = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.TimeLabel = new System.Windows.Forms.Label();
+            this.SwopLabel = new System.Windows.Forms.Label();
+            this.ComparisonLabel = new System.Windows.Forms.Label();
+            this.CocktailSort = new System.Windows.Forms.Button();
+            this.InsertSort = new System.Windows.Forms.Button();
+            this.ShellSort = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -124,15 +130,15 @@
             this.panel3.Size = new System.Drawing.Size(378, 151);
             this.panel3.TabIndex = 2;
             // 
-            // button1
+            // BubbleSort
             // 
-            this.button1.Location = new System.Drawing.Point(410, 170);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Сортировка";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.BubbleSort.Location = new System.Drawing.Point(410, 170);
+            this.BubbleSort.Name = "BubbleSort";
+            this.BubbleSort.Size = new System.Drawing.Size(75, 23);
+            this.BubbleSort.TabIndex = 3;
+            this.BubbleSort.Text = "BubbleSort";
+            this.BubbleSort.UseVisualStyleBackColor = true;
+            this.BubbleSort.Click += new System.EventHandler(this.BubbleSort_Click);
             // 
             // panel4
             // 
@@ -140,16 +146,76 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Location = new System.Drawing.Point(410, 199);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(378, 151);
+            this.panel4.Size = new System.Drawing.Size(378, 220);
             this.panel4.TabIndex = 4;
+            // 
+            // TimeLabel
+            // 
+            this.TimeLabel.AutoSize = true;
+            this.TimeLabel.Location = new System.Drawing.Point(10, 195);
+            this.TimeLabel.Name = "TimeLabel";
+            this.TimeLabel.Size = new System.Drawing.Size(43, 13);
+            this.TimeLabel.TabIndex = 5;
+            this.TimeLabel.Text = "Время:";
+            // 
+            // SwopLabel
+            // 
+            this.SwopLabel.AutoSize = true;
+            this.SwopLabel.Location = new System.Drawing.Point(10, 150);
+            this.SwopLabel.Name = "SwopLabel";
+            this.SwopLabel.Size = new System.Drawing.Size(116, 13);
+            this.SwopLabel.TabIndex = 6;
+            this.SwopLabel.Text = "Количество обменов:";
+            // 
+            // ComparisonLabel
+            // 
+            this.ComparisonLabel.AutoSize = true;
+            this.ComparisonLabel.Location = new System.Drawing.Point(10, 173);
+            this.ComparisonLabel.Name = "ComparisonLabel";
+            this.ComparisonLabel.Size = new System.Drawing.Size(126, 13);
+            this.ComparisonLabel.TabIndex = 7;
+            this.ComparisonLabel.Text = "Количество сравнений:";
+            // 
+            // CocktailSort
+            // 
+            this.CocktailSort.Location = new System.Drawing.Point(492, 170);
+            this.CocktailSort.Name = "CocktailSort";
+            this.CocktailSort.Size = new System.Drawing.Size(75, 23);
+            this.CocktailSort.TabIndex = 5;
+            this.CocktailSort.Text = "CocktailSort";
+            this.CocktailSort.UseVisualStyleBackColor = true;
+            this.CocktailSort.Click += new System.EventHandler(this.CocktailSort_Click);
+            // 
+            // InsertSort
+            // 
+            this.InsertSort.Location = new System.Drawing.Point(574, 170);
+            this.InsertSort.Name = "InsertSort";
+            this.InsertSort.Size = new System.Drawing.Size(75, 23);
+            this.InsertSort.TabIndex = 6;
+            this.InsertSort.Text = "InsertSort";
+            this.InsertSort.UseVisualStyleBackColor = true;
+            this.InsertSort.Click += new System.EventHandler(this.InsertSort_Click);
+            // 
+            // ShellSort
+            // 
+            this.ShellSort.Location = new System.Drawing.Point(655, 170);
+            this.ShellSort.Name = "ShellSort";
+            this.ShellSort.Size = new System.Drawing.Size(75, 23);
+            this.ShellSort.TabIndex = 7;
+            this.ShellSort.Text = "ShellSort";
+            this.ShellSort.UseVisualStyleBackColor = true;
+            this.ShellSort.Click += new System.EventHandler(this.ShellSort_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ShellSort);
+            this.Controls.Add(this.InsertSort);
+            this.Controls.Add(this.CocktailSort);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BubbleSort);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -174,8 +240,14 @@
         private System.Windows.Forms.Button FillButton;
         private System.Windows.Forms.TextBox FillTextBox;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BubbleSort;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label TimeLabel;
+        private System.Windows.Forms.Label SwopLabel;
+        private System.Windows.Forms.Label ComparisonLabel;
+        private System.Windows.Forms.Button CocktailSort;
+        private System.Windows.Forms.Button InsertSort;
+        private System.Windows.Forms.Button ShellSort;
     }
 }
 

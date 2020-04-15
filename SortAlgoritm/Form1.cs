@@ -36,6 +36,8 @@ namespace SortAlgoritm
 
         private void FillButton_Click(object sender, EventArgs e)
         {
+            panel3.Controls.Clear();
+            items = new List<SortedItem>();
             if (int.TryParse(FillTextBox.Text, out int value))
             {
                 var rnd = new Random();
@@ -47,60 +49,115 @@ namespace SortAlgoritm
                     this.panel3.Controls.Add(item.Label);
                 }
             }
-            AddTextBox.Clear();
+            FillTextBox.Clear();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var listForSort = new ShellSort<SortedItem>(items);
-            listForSort.CompareEvent += ListForSort_CompareEvent;
-            listForSort.SwopEvent += ListForSort_SwopEvent;
-            listForSort.Sort();
-            DisplayList(listForSort.Items);
-        }
-
-        private void ListForSort_SwopEvent(object sender, Tuple<SortedItem, SortedItem> e)
-        {
-            var temp = e.Item1.Value;
-            e.Item1.SetValue(e.Item2.Value);
-            e.Item2.SetValue(temp);
-
-            Refresh();
-            
-            Thread.Sleep(1000);
-            e.Item1.SetColor(Color.Blue);
-            e.Item2.SetColor(Color.Blue);
-        }
-
+       
+        //Обработка события сравнения значений
         private void ListForSort_CompareEvent(object sender, Tuple<SortedItem, SortedItem> e)
         {
             e.Item1.SetColor(Color.Red);
-            e.Item2.SetColor(Color.Green);
-            Refresh();
-            //Thread.Sleep(1000);
+            e.Item2.SetColor(Color.Red);
+            if (sender is AlgorithmBase<SortedItem> obj)
+            {
+                ComparisonLabel.Text = "Количество сравнений: " + obj.ComparisonCount;
+            }
+            panel4.Refresh();
+            Thread.Sleep(200);
             e.Item1.SetColor(Color.Blue);
             e.Item2.SetColor(Color.Blue);
         }
 
-        public void Swop(AlgorithmBase<int> listForSort, int indA, int indB)
+        // Обработка события перемены значений местами
+        private void ListForSort_SwopEventAsync(object sender, Tuple<SortedItem, SortedItem> e)
         {
+            var temp = e.Item1.Number;
+            e.Item1.SetPosition(e.Item2.Number);
+            e.Item2.SetPosition(temp);
+            e.Item1.SetColor(Color.Red);
+            e.Item2.SetColor(Color.Red);
+            if (sender is AlgorithmBase<SortedItem> obj)
+            {
+                SwopLabel.Text = "Количество обменов: " + obj.SwopCount;
+            }
+            panel4.Refresh();
 
-            var temp = listForSort.Items[indA];
+            Thread.Sleep(200);
+            e.Item1.SetColor(Color.Blue);
+            e.Item2.SetColor(Color.Blue);
+            panel4.Refresh();
+        }
+        
 
-            listForSort.Items[indA] = listForSort.Items[indB];
+        // кнопки запуска сортировки
 
-            listForSort.Items[indB] = temp;
+        private void CocktailSort_Click(object sender, EventArgs e)
+        {
+            panel4.Controls.Clear();
+            var listForSort = new CocKtailSort<SortedItem>(items);
+            var NewItems = DisplayList(listForSort.Items);
+            listForSort = new CocKtailSort<SortedItem>(NewItems);
+            StartSorting(listForSort);
         }
 
-        public void DisplayList(List<SortedItem> list)
+        private void BubbleSort_Click(object sender, EventArgs e)
         {
+            panel4.Controls.Clear();
+            var listForSort = new BubbleSort<SortedItem>(items);
+            var NewItems = DisplayList(listForSort.Items);
+            listForSort = new BubbleSort<SortedItem>(NewItems);
+            StartSorting(listForSort);
+        }
+
+        private void InsertSort_Click(object sender, EventArgs e)
+        {
+            panel4.Controls.Clear();
+            var listForSort = new InsertSort<SortedItem>(items);
+            var NewItems = DisplayList(listForSort.Items);
+            listForSort = new InsertSort<SortedItem>(NewItems);
+            StartSorting(listForSort);
+        }
+
+        private void ShellSort_Click(object sender, EventArgs e)
+        {
+            panel4.Controls.Clear();
             
-            for(int i = 0; i < list.Count; i++)
+            var listForSort = new ShellSort<SortedItem>(items);
+            var NewItems = DisplayList(listForSort.Items);
+            listForSort = new ShellSort<SortedItem>(NewItems);
+            StartSorting(listForSort);
+        }
+
+
+
+        public void StartSorting(AlgorithmBase<SortedItem> listForSort)
+        {
+            panel4.Controls.Add(ComparisonLabel);
+            panel4.Controls.Add(SwopLabel);
+            TimeLabel.Text = "Время: ";
+            panel4.Controls.Add(TimeLabel);
+
+            listForSort.CompareEvent += ListForSort_CompareEvent;
+            listForSort.SwopEvent += ListForSort_SwopEventAsync;
+            panel4.Refresh();
+
+            var time = listForSort.Sort();
+            TimeLabel.Text += $"{time.Seconds}";
+            //SwopLabel.Text += listForSort.SwopCount;
+            //ComparisonLabel.Text += listForSort.ComparisonCount;
+        }
+
+        public List<SortedItem> DisplayList(List<SortedItem> list)
+        {
+            List<SortedItem> NewList = new List<SortedItem>();
+            for (int i = 0; i < list.Count; i++)
             {
                 var item = new SortedItem(list[i].Value, i);
                 this.panel4.Controls.Add(item.ProgressBar);
                 this.panel4.Controls.Add(item.Label);
+                NewList.Add(item);
             }
+            return NewList;
         }
     }
 }

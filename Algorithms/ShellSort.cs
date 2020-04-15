@@ -22,7 +22,7 @@ namespace Algorithms
                 {
                         var current = j;
 
-                        while (current >= step && Items[current].CompareTo(Items[current - step]) == -1)
+                        while (current >= step && Compare(Items[current], Items[current - step]) == -1)
                         {
                             Swop(current, current - step);
                             current -= step;

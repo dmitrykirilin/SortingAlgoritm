@@ -8,6 +8,9 @@ namespace Algorithms
 {
     public class CocKtailSort<T> : AlgorithmBase<T> where T: IComparable
     {
+        public CocKtailSort(IEnumerable<T> items) : base(items) { }
+        public CocKtailSort() { }
+
         protected override void MakeSort()
         {
             int left = 0;
@@ -18,11 +21,9 @@ namespace Algorithms
                 var sc = SwopCount;
                 for (int i = left; i < right; i++)
                 {
-                    if(Items[i].CompareTo(Items[i + 1]) == 1)
+                    if(Compare(Items[i], Items[i + 1]) == 1)
                     {
                         Swop(i, i + 1);
-
-                        ComparisonCount++;
                     }
                 }
                 
@@ -34,11 +35,9 @@ namespace Algorithms
 
                 for (int i = right; i > left; i--)
                 {
-                    if (Items[i].CompareTo(Items[i - 1]) == -1)
+                    if (Compare(Items[i], Items[i - 1]) == -1)
                     {
                         Swop(i, i - 1);
-
-                        ComparisonCount++;
                     }
                 }
                 
