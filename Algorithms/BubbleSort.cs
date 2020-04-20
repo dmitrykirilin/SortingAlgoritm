@@ -30,7 +30,7 @@ namespace Algorithms
                     }
                     else
                     {
-                        Thread.Sleep(200);
+                        //Thread.Sleep(200);
                     }
                 }
                 
