@@ -45,6 +45,7 @@
             this.CocktailSort = new System.Windows.Forms.Button();
             this.InsertSort = new System.Windows.Forms.Button();
             this.ShellSort = new System.Windows.Forms.Button();
+            this.SelectionSort = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -132,7 +133,7 @@
             // 
             // BubbleSort
             // 
-            this.BubbleSort.Location = new System.Drawing.Point(410, 170);
+            this.BubbleSort.Location = new System.Drawing.Point(248, 169);
             this.BubbleSort.Name = "BubbleSort";
             this.BubbleSort.Size = new System.Drawing.Size(75, 23);
             this.BubbleSort.TabIndex = 3;
@@ -178,7 +179,7 @@
             // 
             // CocktailSort
             // 
-            this.CocktailSort.Location = new System.Drawing.Point(492, 170);
+            this.CocktailSort.Location = new System.Drawing.Point(329, 170);
             this.CocktailSort.Name = "CocktailSort";
             this.CocktailSort.Size = new System.Drawing.Size(75, 23);
             this.CocktailSort.TabIndex = 5;
@@ -188,7 +189,7 @@
             // 
             // InsertSort
             // 
-            this.InsertSort.Location = new System.Drawing.Point(574, 170);
+            this.InsertSort.Location = new System.Drawing.Point(412, 170);
             this.InsertSort.Name = "InsertSort";
             this.InsertSort.Size = new System.Drawing.Size(75, 23);
             this.InsertSort.TabIndex = 6;
@@ -198,7 +199,7 @@
             // 
             // ShellSort
             // 
-            this.ShellSort.Location = new System.Drawing.Point(655, 170);
+            this.ShellSort.Location = new System.Drawing.Point(167, 169);
             this.ShellSort.Name = "ShellSort";
             this.ShellSort.Size = new System.Drawing.Size(75, 23);
             this.ShellSort.TabIndex = 7;
@@ -206,11 +207,22 @@
             this.ShellSort.UseVisualStyleBackColor = true;
             this.ShellSort.Click += new System.EventHandler(this.ShellSort_Click);
             // 
+            // SelectionSort
+            // 
+            this.SelectionSort.Location = new System.Drawing.Point(493, 170);
+            this.SelectionSort.Name = "SelectionSort";
+            this.SelectionSort.Size = new System.Drawing.Size(82, 23);
+            this.SelectionSort.TabIndex = 8;
+            this.SelectionSort.Text = "SelectionSort";
+            this.SelectionSort.UseVisualStyleBackColor = true;
+            this.SelectionSort.Click += new System.EventHandler(this.SelectionSort_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SelectionSort);
             this.Controls.Add(this.ShellSort);
             this.Controls.Add(this.InsertSort);
             this.Controls.Add(this.CocktailSort);
@@ -248,6 +260,7 @@
         private System.Windows.Forms.Button CocktailSort;
         private System.Windows.Forms.Button InsertSort;
         private System.Windows.Forms.Button ShellSort;
+        private System.Windows.Forms.Button SelectionSort;
     }
 }
 

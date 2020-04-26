@@ -63,9 +63,12 @@ namespace SortAlgoritm
                 ComparisonLabel.Text = "Количество сравнений: " + obj.ComparisonCount;
             }
             panel4.Refresh();
-            Thread.Sleep(200);
+
+            Thread.Sleep(60);
+
             e.Item1.SetColor(Color.Blue);
             e.Item2.SetColor(Color.Blue);
+            panel4.Refresh();
         }
 
         // Обработка события перемены значений местами
@@ -82,7 +85,7 @@ namespace SortAlgoritm
             }
             panel4.Refresh();
 
-            Thread.Sleep(200);
+            //Thread.Sleep(30);
             e.Item1.SetColor(Color.Blue);
             e.Item2.SetColor(Color.Blue);
             panel4.Refresh();
@@ -128,7 +131,14 @@ namespace SortAlgoritm
             StartSorting(listForSort);
         }
 
-
+        private void SelectionSort_Click(object sender, EventArgs e)
+        {
+            panel4.Controls.Clear();
+            var listForSort = new SelectionSort<SortedItem>(items);
+            var NewItems = DisplayList(listForSort.Items);
+            listForSort = new SelectionSort<SortedItem>(NewItems);
+            StartSorting(listForSort);
+        }
 
         public void StartSorting(AlgorithmBase<SortedItem> listForSort)
         {
@@ -159,5 +169,7 @@ namespace SortAlgoritm
             }
             return NewList;
         }
+
+        
     }
 }
