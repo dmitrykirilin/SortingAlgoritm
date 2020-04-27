@@ -140,6 +140,15 @@ namespace SortAlgoritm
             StartSorting(listForSort);
         }
 
+        private void HeapSort_Click(object sender, EventArgs e)
+        {
+            panel4.Controls.Clear();
+            var listForSort = new HeapSort<SortedItem>(items);
+            var NewItems = DisplayList(listForSort.Items);
+            listForSort = new HeapSort<SortedItem>(NewItems);
+            StartSorting(listForSort);
+        }
+
         public void StartSorting(AlgorithmBase<SortedItem> listForSort)
         {
             panel4.Controls.Add(ComparisonLabel);

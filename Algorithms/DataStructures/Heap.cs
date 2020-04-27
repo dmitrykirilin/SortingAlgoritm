@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Algorithms.DataStructures
 {
-    public class Heap<T>
-           where T : IComparable
+    public class Heap<T> : AlgorithmBase<T> where T : IComparable
     {
-        public List<T> items = new List<T>();
 
-        public int Count => items.Count;
+        public int Count => Items.Count;
 
         public Heap() { }
 
@@ -28,7 +26,7 @@ namespace Algorithms.DataStructures
         {
             if (Count > 0)
             {
-                return items[0];
+                return Items[0];
             }
             else
             {
@@ -40,7 +38,7 @@ namespace Algorithms.DataStructures
         {
             if (Count > 0)
             {
-                return items[0];
+                return Items[0];
             }
             else
             {
@@ -50,24 +48,22 @@ namespace Algorithms.DataStructures
 
         public void Push(T item)
         {
-            items.Add(item);
+            Items.Add(item);
 
             var i = Count - 1;
-            while (items[i].CompareTo(items[(i - 1) / 2]) == -1 && i > 0)
+            while (Compare(Items[i], Items[(i - 1) / 2]) == -1 && i > 0)
             {
-                var temp = items[i];
-                items[i] = items[(i - 1) / 2];
-                items[(i - 1) / 2] = temp;
+                Swop(i, (i - 1) / 2);
                 i = (i - 1) / 2;
             }
         }
 
         public T Pop()
         {
-            var result = items[0];
+            var result = Items[0];
 
-            items[0] = items[Count - 1];
-            items.RemoveAt(Count - 1);
+            Items[0] = Items[Count - 1];
+            Items.RemoveAt(Count - 1);
 
             int i = 0;
 
@@ -75,17 +71,17 @@ namespace Algorithms.DataStructures
             {
                 if (i * 2 + 2 < Count)
                 {
-                    if (items[i].CompareTo(items[2 * i + 1]) == 1 ||
-                    items[i].CompareTo(items[2 * i + 2]) == 1)
+                    if (Compare(Items[i], Items[2 * i + 1]) == 1 ||
+                    Compare(Items[i], Items[2 * i + 2]) == 1)
                     {
-                        if (items[2 * i + 1].CompareTo(items[2 * i + 2]) == -1)
+                        if (Items[2 * i + 1].CompareTo(Items[2 * i + 2]) == -1)
                         {
-                            Swap(i, 2 * i + 1);
+                            Swop(i, 2 * i + 1);
                             i = 2 * i + 1;
                         }
                         else
                         {
-                            Swap(i, 2 * i + 2);
+                            Swop(i, 2 * i + 2);
                             i = 2 * i + 2;
                         }
 
@@ -95,9 +91,9 @@ namespace Algorithms.DataStructures
                         break;
                     }
                 }
-                else if (items[i].CompareTo(items[2 * i + 1]) == 1)
+                else if (Compare(Items[i], Items[2 * i + 1]) == 1)
                 {
-                    Swap(i, 2 * i + 1);
+                    Swop(i, 2 * i + 1);
                     break;
                 }
                 else
@@ -117,12 +113,6 @@ namespace Algorithms.DataStructures
             }
             return SortedList;
         }
-
-        private void Swap(int a, int b)
-        {
-            var temp = items[a];
-            items[a] = items[b];
-            items[b] = temp;
-        }
+        
     }
 }

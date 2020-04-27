@@ -16,8 +16,8 @@ namespace Algorithms
 
         public List<T> Items { get; set; } = new List<T>();
 
-        public event EventHandler<Tuple<T, T>> CompareEvent;
-        public event EventHandler<Tuple<T, T>> SwopEvent;
+        public virtual event EventHandler<Tuple<T, T>> CompareEvent;
+        public virtual event EventHandler<Tuple<T, T>> SwopEvent;
 
         public AlgorithmBase() { }
 
@@ -54,7 +54,7 @@ namespace Algorithms
             Items.Sort();
         }
         
-        protected int Compare(T a, T b)
+        protected virtual int Compare(T a, T b)
         {
             CompareEvent?.Invoke(this, new Tuple<T, T>(a, b));
             ComparisonCount++;
